@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>ゲーム実況の内容比較</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <p class="eyebrow">研究用A/B評価</p>
+      <h1>ゲーム実況の内容比較</h1>
+      <p id="progress" class="progress">説明</p>
+    </header>
+
+    <section id="intro" class="card">
+      <h2>評価方法</h2>
+      <p>同じ40秒のゲーム映像に、異なる自動実況を付けた動画Aと動画Bを比較します。全部で6問です。</p>
+      <div class="focus-box">
+        <strong>音声の品質ではなく、実況の内容だけを評価してください。</strong>
+        <p>声質、発音、抑揚、沈黙、音の途切れは判断に含めません。</p>
+      </div>
+      <ol>
+        <li>動画Aと動画Bをそれぞれ80%以上再生してください。</li>
+        <li><strong>情報量</strong>と<strong>イベント追従</strong>の2項目で、A・B・判定できない、のいずれかを選びます。</li>
+        <li>最後に表示される完了コードをランサーズへ貼り付けてください。</li>
+      </ol>
+      <div class="criteria">
+        <h3>情報量</h3>
+        <p>どちらが、同じ40秒間により多くの出来事・状況・変化へ言及できていますか。</p>
+        <h3>イベント追従</h3>
+        <p>どちらが、映像中の出来事やその変化を、より正しく説明できていますか。</p>
+      </div>
+      <fieldset class="experience">
+        <legend>スマブラのプレイ経験（必須）</legend>
+        <p>最も近いものを1つ選んでください。</p>
+        <select id="experience">
+          <option value="">選択してください</option>
+          <option value="D">ほぼ毎日プレイする</option>
+          <option value="W">週1回以上プレイする</option>
+          <option value="M">月1回以上プレイする</option>
+          <option value="Y">年に数回プレイする</option>
+          <option value="P">プレイしたことはある</option>
+          <option value="K">プレイしたことはないが、ルールは知っている</option>
+          <option value="X">プレイしたことがなく、ルールも知らない</option>
+        </select>
+        <p id="experience-note" class="muted">本評価は、スマブラのルールを知っている方が対象です。</p>
+      </fieldset>
+      <label class="check"><input id="understood" type="checkbox"> 音声品質ではなく、実況内容のみを評価することを理解しました。</label>
+      <button id="start" class="primary" disabled>評価を開始する</button>
+      <p id="set-error" class="error hidden"></p>
+    </section>
+
+    <section id="trial" class="card hidden">
+      <h2 id="trial-title">比較 1 / 6</h2>
+      <p class="notice">AとBは同じ映像です。両方を視聴し、実況が伝えている内容を比較してください。</p>
+      <div class="videos">
+        <article>
+          <h3>動画A</h3>
+          <video id="video-a" controls playsinline preload="metadata"></video>
+          <p id="watch-a" class="watch-status">未視聴</p>
+        </article>
+        <article>
+          <h3>動画B</h3>
+          <video id="video-b" controls playsinline preload="metadata"></video>
+          <p id="watch-b" class="watch-status">未視聴</p>
+        </article>
+      </div>
+
+      <div id="rating" class="rating-groups" aria-disabled="true">
+        <fieldset disabled>
+          <legend>1. 情報量</legend>
+          <p>どちらが、たくさんの出来事・状況・変化に言及できていますか。</p>
+          <div class="choices">
+            <label><input type="radio" name="information" value="A"><span>動画Aの方が多い</span></label>
+            <label><input type="radio" name="information" value="B"><span>動画Bの方が多い</span></label>
+            <label><input type="radio" name="information" value="N"><span>判定できない・同程度</span></label>
+          </div>
+        </fieldset>
+        <fieldset disabled>
+          <legend>2. イベント追従</legend>
+          <p>どちらが、映像中の出来事やその変化をより正しく説明していますか。</p>
+          <div class="choices">
+            <label><input type="radio" name="following" value="A"><span>動画Aの方が良い</span></label>
+            <label><input type="radio" name="following" value="B"><span>動画Bの方が良い</span></label>
+            <label><input type="radio" name="following" value="N"><span>判定できない・同程度</span></label>
+          </div>
+        </fieldset>
+      </div>
+      <p id="watch-note" class="muted">動画Aと動画Bをそれぞれ80%以上再生すると回答できます。</p>
+      <button id="next" class="primary" disabled>次へ</button>
+    </section>
+
+    <section id="done" class="card hidden">
+      <h2>評価完了</h2>
+      <p>下の完了コードをコピーし、ランサーズの回答欄へそのまま貼り付けてください。</p>
+      <textarea id="completion" rows="5" readonly></textarea>
+      <button id="copy" class="primary">完了コードをコピー</button>
+      <p id="copy-status" class="muted"></p>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
